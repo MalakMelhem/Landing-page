@@ -87,6 +87,9 @@ section {
     color: #fff;
     transition: ease 0.3s all;
 }
+.navbar__menu li.active-link{
+    background-color: #cc1;
+}
 
 /* Header Styles */
 .page__header {
@@ -106,6 +109,32 @@ section {
 
 .page__footer p{
     color: #fff;
+}
+/* scroll top button Styles */
+.scroll-top{
+    position: fixed;
+    bottom: 6em;
+    right: 2em;
+    width: 40px;
+    height: 40px;
+    background-color: #eee;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    visibility: hidden;
+ 
+}
+.scroll-top:hover{
+    background-color: #333;
+    color: #fff;
+    transition: ease 0.3s all;
+}
+.scroll-top.show{
+    opacity: 1;
+    visibility: visible;
+}
+.scroll-top.hide{
+    opacity: 0;
 }
 
 
