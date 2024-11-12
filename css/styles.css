@@ -98,6 +98,10 @@ section {
     top: 0;
     width: 100%;
     z-index: 5;
+    transition: ease 0.3s all;
+}
+.page__header.hidden{
+    transform: translateY(-100%);
 }
 
 /* Footer Styles */
@@ -130,12 +134,9 @@ section {
     transition: ease 0.3s all;
 }
 .scroll-top.show{
-    opacity: 1;
     visibility: visible;
 }
-.scroll-top.hide{
-    opacity: 0;
-}
+
 
 
 /* ---- Theme Rules ---- */

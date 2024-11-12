@@ -25,6 +25,8 @@
 const navbarList=document.getElementById('navbar__list');
 const sections=document.querySelectorAll('section');
 const scrollUpBtn=document.getElementById('scrollUpBtn');
+const pageHeader=document.querySelector('.page__header');
+let isScrolling;
 
 /**
  * End Global Variables
@@ -74,11 +76,12 @@ sections.forEach(section=>{
 const defaultLineItem=document.querySelectorAll('li')[0];
 defaultLineItem.classList='active-link';
 
+// Show the navbar 
+pageHeader.classList.remove('hidden');
 
 
-
-// Scroll to anchor ID using scrollTO event
-function scrollTO(event){
+// Scroll to anchor ID using scroll event
+function scrollingById(event){
     if(event.target.nodeName ==='A'){
         event.preventDefault();
         const anchorID=event.target.getAttribute('href').substring(1);
@@ -92,9 +95,7 @@ function scrollTO(event){
 function makeVisible(){
     if(window.scrollY>window.innerHeight){
         scrollUpBtn.classList.add('show');
-        scrollUpBtn.classList.remove('hide');
     }else{
-        scrollUpBtn.classList.add('hide');
         scrollUpBtn.classList.remove('show');
     }
 }
@@ -109,16 +110,20 @@ function makeVisible(){
 // Build menu 
 
 // Scroll to section on link click
-navbarList.addEventListener('click', scrollTO);
+navbarList.addEventListener('click', scrollingById);
 
-// Set sections as active
-document.addEventListener('scroll', makeActive);
+// Set sections as active, and add a scroll to top button
+document.addEventListener('scroll', ()=>{
+    makeActive();
+    makeVisible();
+    // Show the navbar when scrolling
+    pageHeader.classList.remove('hidden');
+    clearTimeout(isScrolling);
+    isScrolling = setTimeout(() => {
+        pageHeader.classList.add('hidden'); 
+    }, 2000); 
+});
 
-
-// Add a scroll to top button
-document.addEventListener('scroll', makeVisible);
-
-// 
 scrollUpBtn.addEventListener('click', () => {
     window.scrollTo({
         top: 0,
